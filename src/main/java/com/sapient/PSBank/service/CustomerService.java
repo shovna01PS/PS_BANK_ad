@@ -15,6 +15,7 @@ import org.springframework.util.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -47,7 +48,9 @@ public class CustomerService {
     }
 
     public Customer getByID(String id){
-        Customer customer=customerRepository.findById(id).get();
+        Optional<Customer> arr=customerRepository.findById(id);
+        Customer customer=null;
+        if(arr.isPresent()){customer=arr.get();}
         if(!ObjectUtils.isEmpty(customer)) {
             logger.info("Successfully found a customer with given id");
             return customer;
@@ -121,7 +124,7 @@ public class CustomerService {
         return customerRepository.existsById(id);
     }
     public void signOut(String id){
-        System.out.println("setting token");
+        logger.info("setting token");
         customerRepository.setToken("",id);}
     public List<Transaction> getTransactions(String id) {
         return transactionRepository.getPastTransactionList(id);

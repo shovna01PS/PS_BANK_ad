@@ -14,7 +14,7 @@ import java.util.Map;
 @Component
 public class JwtAuthenticationHelper {
     private final String secret=System.getenv("SECRET");
-    private static final long JWT_TOKEN_VALIDITY = 60*60;
+    private static final long JWT_TOKEN_VALIDITY = (long)60*60;
     public String getIdFromToken(String token){
         Claims claims=getClaimsFromToken(token);
         return claims.getSubject();

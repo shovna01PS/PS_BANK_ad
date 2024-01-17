@@ -44,7 +44,7 @@ public class Customer implements UserDetails {
     @Column
     private double balance;
     @Column
-    private String currentTokenmvn ;
+    private String currentToken ;
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Transaction> transactions;

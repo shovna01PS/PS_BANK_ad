@@ -2,8 +2,6 @@ package com.sapient.PSBank.controller;
 
 import com.sapient.PSBank.dto.JwtRequest;
 import com.sapient.PSBank.dto.JwtResponse;
-import com.sapient.PSBank.jwt.JwtAuthenticationHelper;
-import com.sapient.PSBank.repository.CustomerRepository;
 import com.sapient.PSBank.service.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
