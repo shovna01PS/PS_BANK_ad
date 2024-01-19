@@ -8,7 +8,6 @@ import java.time.format.DateTimeFormatter;
 public class DateAndTime {
     public String getDateAndTime(){
         LocalDate currentDate = LocalDate.now();
-        //LocalTime currentTime = LocalTime.now().plusHours(5).plusMinutes(30);
         LocalTime currentTime = LocalTime.now();
 
         // Define the date and time format patterns

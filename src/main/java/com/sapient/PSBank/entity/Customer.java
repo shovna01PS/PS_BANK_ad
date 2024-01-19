@@ -8,6 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -47,10 +48,9 @@ public class Customer implements UserDetails {
     private String currentToken ;
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<Transaction> transactions;
+    private transient List<Transaction> transactions;
 
-    public Customer(String id, String name, String email, String address, String gender, String phone, String password, double balance) {
-        this.id = id;
+    public Customer(String name, String email, String address, String gender, String phone, String password, double balance) {
         this.name = name;
         this.email = email;
         this.address = address;
@@ -59,12 +59,9 @@ public class Customer implements UserDetails {
         this.password = password;
         this.balance = balance;
     }
-//    @Enumerated(EnumType.STRING)
-//    private Role role;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-//        return List.of(new SimpleGrantedAuthority(role.name()));
-        return null;
+        return Collections.emptyList();
     }
 
     @Override

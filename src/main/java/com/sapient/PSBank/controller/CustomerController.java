@@ -4,14 +4,12 @@ import com.sapient.PSBank.entity.Customer;
 import com.sapient.PSBank.entity.Transaction;
 import com.sapient.PSBank.jwt.JwtAuthenticationHelper;
 import com.sapient.PSBank.service.CustomerService;
-import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import jakarta.validation.Valid;
 import lombok.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -49,7 +47,7 @@ public class CustomerController {
             return new ResponseEntity<>(customer, HttpStatus.OK);
         }
         catch (Exception e){
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new Customer(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -132,6 +130,7 @@ public class CustomerController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     @GetMapping("/transactions")
     ResponseEntity<List<Transaction>> getTransactions(@RequestHeader("Authorization") String bearerToken){
         try {
@@ -140,7 +139,7 @@ public class CustomerController {
             else return new ResponseEntity<>(transactionList,HttpStatus.NOT_FOUND);
         }
         catch (Exception e){
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new ArrayList<>(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @GetMapping("/fds")
@@ -151,7 +150,7 @@ public class CustomerController {
             else return new ResponseEntity<>(fdList,HttpStatus.NOT_FOUND);
         }
         catch (Exception e){
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new ArrayList<>(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @GetMapping("/loans")
@@ -162,7 +161,7 @@ public class CustomerController {
             else return new ResponseEntity<>(loanList,HttpStatus.NOT_FOUND);
         }
         catch (Exception e){
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new ArrayList<>(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

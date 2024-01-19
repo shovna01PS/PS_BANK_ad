@@ -3,7 +3,6 @@ import com.sapient.PSBank.dto.JwtRequest;
 import com.sapient.PSBank.dto.JwtResponse;
 import com.sapient.PSBank.jwt.JwtAuthenticationHelper;
 import com.sapient.PSBank.repository.CustomerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,13 +15,14 @@ public class AuthService {
     private final AuthenticationManager manager;
     private final JwtAuthenticationHelper jwtAuthenticationHelper;
     private final UserDetailsService userDetailsService;
-    @Autowired
+    final
     CustomerRepository customerRepository;
 
-    public AuthService(AuthenticationManager manager, JwtAuthenticationHelper jwtAuthenticationHelper, UserDetailsService userDetailsService) {
+    public AuthService(AuthenticationManager manager, JwtAuthenticationHelper jwtAuthenticationHelper, UserDetailsService userDetailsService, CustomerRepository customerRepository) {
         this.manager = manager;
         this.jwtAuthenticationHelper = jwtAuthenticationHelper;
         this.userDetailsService = userDetailsService;
+        this.customerRepository = customerRepository;
     }
     private void doAuthenticate(String username,String password){
         UsernamePasswordAuthenticationToken authenticationToken=new UsernamePasswordAuthenticationToken(username,password);

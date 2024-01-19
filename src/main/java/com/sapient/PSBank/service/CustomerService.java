@@ -60,7 +60,7 @@ public class CustomerService {
             return null;
         }
     }
-    public boolean customerDeposit(String id,double amt) throws Exception {
+    public boolean customerDeposit(String id,double amt){
         Customer customer=getByID(id);
         if(amt>0 && !ObjectUtils.isEmpty(customer) && (amt+customer.getBalance()<100000000f)) {
             customer.setBalance(customer.getBalance() + amt);
@@ -72,7 +72,7 @@ public class CustomerService {
         }
         return false;
     }
-    public boolean customerWithdraw(String id,double amt) throws Exception {
+    public boolean customerWithdraw(String id,double amt){
         Customer customer=getByID(id);
         if(amt>0 && !ObjectUtils.isEmpty(customer) && (customer.getBalance()-amt>1000)) {
             customer.setBalance(customer.getBalance() - amt);
@@ -84,7 +84,7 @@ public class CustomerService {
         }
         return false;
     }
-    public boolean applyLoan(String id,double amt,int years,String type) throws Exception {
+    public boolean applyLoan(String id,double amt,int years,String type) {
         Customer customer=getByID(id);
         if(amt>0 && !ObjectUtils.isEmpty(customer)) {
             Transaction transaction = new Transaction(dateAndTime.getDateAndTime(), type, amt,years, customer);
@@ -94,7 +94,7 @@ public class CustomerService {
         }
         return false;
     }
-    public boolean createFD(String id,double amt,int years) throws Exception {
+    public boolean createFD(String id,double amt,int years) {
         Customer customer=getByID(id);
         if(amt>0 && !ObjectUtils.isEmpty(customer)) {
             Transaction transaction = new Transaction(dateAndTime.getDateAndTime(), "FD", amt,years, customer);

@@ -1,9 +1,5 @@
 package com.sapient.PSBank.service;
-
-import com.sapient.PSBank.entity.Customer;
 import com.sapient.PSBank.repository.CustomerRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
